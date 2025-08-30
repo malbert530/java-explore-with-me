@@ -1,3 +1,4 @@
 package ru.practicum;
 
-public class AppTest {}
+public class AppTest {
+}

@@ -15,22 +15,20 @@ import org.springframework.web.client.RestTemplate;
 public class StatsClient {
     private final RestTemplate rest;
     @Value("${stats-server.url}")
-    private String SERVER_URL;
-    private final String HIT_API_PREFIX = "/hit";
-    private final String STATS_API_PREFIX = "/stats";
+    private String serverUrl;
 
     public void hit(EndpointHitDto body) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<EndpointHitDto> requestEntity = new HttpEntity<>(body, headers);
-        rest.postForEntity(SERVER_URL + HIT_API_PREFIX, requestEntity, Void.class);
+        rest.postForEntity(serverUrl + "/hit", requestEntity, Void.class);
     }
 
     public List<ViewStatsDto> getStats(LocalDateTime start, LocalDateTime end, Boolean unique, List<String> uris) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<ViewStatsDto> requestEntity = new HttpEntity<>(null, headers);
-        StringBuilder path = new StringBuilder(SERVER_URL + STATS_API_PREFIX)
+        StringBuilder path = new StringBuilder(serverUrl + "/stats")
                 .append("?start=").append(start)
                 .append("&end=").append(end)
                 .append("&unique=").append(unique);
