@@ -8,6 +8,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
   sql:
     init:
       mode: always
