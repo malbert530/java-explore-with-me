@@ -38,8 +38,6 @@ public class RequestService {
             String errorMessage = String.format("Событие с id = %d недоступно", eventId);
             throw new ValidationException(errorMessage);
         }
-//        Event event = eventRepository.findByIdAndState(eventId, Event.State.PUBLISHED)
-//                .orElseThrow(() -> new NotFoundException("Событие с id = " + eventId + " не найдено или недоступно"));
 
         if (Objects.equals(event.getInitiator().getId(), userId)) {
             throw new ValidationException("Инициатор события не может добавить запрос на участие в своём событии");
