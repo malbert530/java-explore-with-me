@@ -1,11 +1,10 @@
 server:
-  port: 8080
-
-services:
-  stats-server:
-    url: http://stats-server:9090
+  port: 9090
 
 spring:
+  h2:
+    console:
+      enabled: true
   jpa:
     hibernate:
       ddl-auto: none
@@ -19,8 +18,8 @@ spring:
     init:
       mode: always
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/ewm
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:file:./db/stats
     username: user
     password: password
 
