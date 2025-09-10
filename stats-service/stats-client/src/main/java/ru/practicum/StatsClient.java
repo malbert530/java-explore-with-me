@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class StatsClient {
     private final RestTemplate rest;
-    @Value("${stats-server.url}")
+    @Value("${services.stats-server.url:http://localhost:9090}")
     private String serverUrl;
 
     public void hit(EndpointHitDto body) {

@@ -19,7 +19,7 @@ public class StatsService {
 
     public void createNewEndpointHit(EndpointHitDto dto) {
         EndpointHit endpointHit = EndpointHitMapper.toModel(dto);
-        EndpointHit saved = repository.save(endpointHit);
+        EndpointHit saved = repository.saveAndFlush(endpointHit);
         log.info("Запись сохранена как {}", saved);
     }
 
