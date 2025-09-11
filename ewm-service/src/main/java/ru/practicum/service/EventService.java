@@ -226,8 +226,7 @@ public class EventService {
 
     @Transactional
     public EventFullDto getPublishedEventById(Long eventId, HttpServletRequest request) {
-        Event event = eventRep.findByIdAndState(eventId, Event.State.PUBLISHED)
-                .orElseThrow(() -> new NotFoundException("Событие с id = " + eventId + " не найдено или недоступно"));
+        Event event = getPublishedEventOrElseThrow(eventId);
 
         EndpointHitDto hitDto = EndpointHitDto.builder()
                 .ip(request.getRemoteAddr())
@@ -388,5 +387,10 @@ public class EventService {
 
     public List<Event> getAllEventsByIds(List<Long> ids) {
         return eventRep.findAllById(ids);
+    }
+
+    public Event getPublishedEventOrElseThrow(Long id) {
+        return eventRep.findByIdAndState(id, Event.State.PUBLISHED)
+                .orElseThrow(() -> new NotFoundException("Событие с id = " + id + " не найдено или недоступно"));
     }
 }
