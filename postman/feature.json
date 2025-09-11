@@ -907,6 +907,15 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{request_body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{baseURL}}/users/{{uid}}/comments?eventId={{eid}}",
 									"host": [
